@@ -16,5 +16,7 @@ puts "#{line_count} lines
 #{total_characters} characters
 #{total_characters_nospaces} characters (excluding spaces)
 #{word_count1} words
-#{sentence_count} sentences and
-#{paragraph_count} paragraphs" 
+#{sentence_count} sentences
+#{paragraph_count} paragraphs
+#{sentence_count / paragraph_count} sentences per paragraph (average)
+#{word_count1 / sentence_count} words per sentence (average"
