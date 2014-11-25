@@ -1,22 +1,30 @@
 #!/usr/bin/ruby
 unless ARGV.size > 0
-	puts "You need to select a text file"
+	puts "You need to select a txt file"
 	exit
 end
-text_file = ARGV[0]
-lines = File.readlines(text_file)
-line_count = lines.size
-text = lines.join
-total_characters = text.length
-total_characters_nospaces = text.gsub(/\s+/,'').length
-word_count1 = text.split.length
-sentence_count = text.split(/\.|\?|!/).length
-paragraph_count = text.split(/\n\n/).length
-puts "#{line_count} lines 
-#{total_characters} characters
-#{total_characters_nospaces} characters (excluding spaces)
-#{word_count1} words
-#{sentence_count} sentences
-#{paragraph_count} paragraphs
-#{sentence_count / paragraph_count} sentences per paragraph (average)
-#{word_count1 / sentence_count} words per sentence (average"
+#Parses txt document
+txt_file = ARGV[0]
+lines = File.readlines(txt_file)
+line_cnt = lines.size
+txt = lines.join
+t_char = txt.length
+t_char_nospaces = txt.gsub(/\s+/,'').length
+w_cnt1 = txt.split.length
+sentence_cnt = txt.split(/\.|\?|!/).length
+paragraph_cnt = txt.split(/\n\n/).length
+stopws = %w{a the by on for of are with we just but and to the my I has some in this}
+ws = txt.scan(/\w+/)
+kws = ws.select { |w| !stopws.include?(w) }
+kws_percent = ((kws.length.to_f / txt.length.to_f) * 100).to_i
+
+#Reads output to terminal
+puts "#{line_cnt} lines 
+#{t_char} characters
+#{t_char_nospaces} characters (excluding spaces)
+#{w_cnt1} words
+#{sentence_cnt} sentences
+#{paragraph_cnt} paragraphs
+#{sentence_cnt / paragraph_cnt} sentences per paragraph (average)
+#{w_cnt1 / sentence_cnt} words per sentence (average)
+and #{kws_percent}% are keywords."
