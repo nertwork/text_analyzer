@@ -1,11 +1,10 @@
 #!/usr/bin/ruby
-unless ARGV.size > 0
-	puts "You need to select a txt file"
+unless ARGV.size == 1
+	puts "You need to select just one txt file"
 	exit
 end
 #Parses txt document
-txt_file = ARGV[0]
-lines = File.readlines(txt_file)
+lines = File.readlines(ARGV[0])
 line_cnt = lines.size
 txt = lines.join
 t_char = txt.length
